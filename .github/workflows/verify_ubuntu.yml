@@ -1,0 +1,47 @@
+name: env-runs-on-linux
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  verify-conda-macos:
+    name: verify-${{ matrix.os }}-Py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.10"]
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # Print what we want to install
+      - run: |
+          cat cs135_env.yml
+      # Create the env via conda
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: cs135_env
+          environment-file: cs135_env.yml
+          auto-update-conda: true
+          auto-activate-base: false
+          python-version: ${{ matrix.python-version }}
+          channels: conda-forge
+      # Verify the install by printing out the packages  
+      - run: |
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
+          python3 -c "import sklearn"

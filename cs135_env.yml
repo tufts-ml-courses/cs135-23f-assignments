@@ -1,0 +1,19 @@
+name: cs135_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - git
+  ## Scientific Computing
+  - numpy=1.23
+  - scipy=1.10
+  ## Visualization
+  - notebook=6.5
+  - matplotlib=3.7
+  - seaborn=0.12
+  ## Data I/O
+  - pandas=1.5
+  - conda-forge::openpyxl=3.1 # to read .xlsx
+  ## Machine Learning
+  - scikit-learn=1.2
