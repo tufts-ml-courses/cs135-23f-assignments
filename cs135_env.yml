@@ -14,6 +14,7 @@ dependencies:
   - seaborn=0.12
   ## Data I/O
   - pandas=1.5
-  - conda-forge::openpyxl=3.1 # to read .xlsx
+  ## Optional Data I/O
+  #- conda-forge::openpyxl=3.1 # to read .xlsx
   ## Machine Learning
   - scikit-learn=1.2
