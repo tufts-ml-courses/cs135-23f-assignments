@@ -1,4 +1,4 @@
-name: env-runs-on-linux
+name: env-runs-on-windows
 
 # Controls when the workflow will run
 on:
@@ -12,13 +12,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  verify-conda-ubuntu:
+  verify-conda-windows:
     name: verify-${{ matrix.os }}-Py${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest"]
+        os: ["windows-latest"]
         python-version: ["3.10"]
     defaults:
       run:
@@ -44,4 +44,9 @@ jobs:
           conda list
           conda config --show-sources
           conda config --show
-          python3 -c "import sklearn"
+          conda activate cs135_env
+          which python
+          python --version
+          python -c "import numpy; print(numpy.__version__)"
+          python -c "import scipy; print(scipy.__version__)"
+          python -c "import sklearn; print(sklearn.__version__)"
