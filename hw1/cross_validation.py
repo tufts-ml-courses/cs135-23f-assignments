@@ -55,8 +55,8 @@ def train_models_and_calc_scores_for_n_fold_cv(
     >>> np.array2string(te_K, precision=8, suppress_small=True)
     '[0. 0. 0. 0. 0. 0. 0.]'
     '''
-    train_error_per_fold = np.zeros(2, dtype=np.int32)
-    test_error_per_fold = np.zeros(2, dtype=np.int32)
+    train_error_per_fold = np.zeros(n_folds, dtype=np.float32)
+    test_error_per_fold = np.zeros(n_folds, dtype=np.float32)
 
     # TODO define the folds here by calling your function
     # e.g. ... = make_train_and_test_row_ids_for_n_fold_cv(...)
