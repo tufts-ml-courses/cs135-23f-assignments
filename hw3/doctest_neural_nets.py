@@ -15,6 +15,8 @@ Test Cases for predict_0_hidden_layers
 >>> round(b, 3)
 -0.009
 >>> yhat_N = predict_0_hidden_layer(x_NF, w, b, output_activation=identity)
+>>> print(yhat_N.shape)
+(100,)
 >>> np.allclose(yhat_N, reg.predict(x_NF))
 True
 
@@ -29,6 +31,8 @@ True
 >>> print(round(b, 3))
 0.078
 >>> yproba1_N = predict_0_hidden_layer(x_NF, w, b, output_activation=sigmoid)
+>>> print(yproba1_N.shape)
+(100,)
 >>> np.allclose(yproba1_N, clf.predict_proba(x_NF)[:,1])
 True
 
