@@ -1,0 +1,6 @@
+dress
+pullover
+top
+trouser
+sandal
+sneaker
